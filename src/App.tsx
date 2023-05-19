@@ -1,6 +1,6 @@
 import SwaggerUI from 'swagger-ui-react';
 
-import spec from './swagger';
+import {spec} from './generator/generator';
 import "swagger-ui-react/swagger-ui.css";
 
 function App() {

@@ -1,4 +1,6 @@
-const spec = {
+import { SwaggerSpecification } from "./generator/@types/swagger"
+
+const spec: SwaggerSpecification = {
     "openapi": "3.0.0",
     "paths": {
         "/api/protected/calls/vpbx/outbound": {
