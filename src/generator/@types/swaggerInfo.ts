@@ -1,5 +1,5 @@
 export interface SwaggerInfoContact {
-    name: string;
+    name?: string;
     url?: string;
     email?: string;
 }

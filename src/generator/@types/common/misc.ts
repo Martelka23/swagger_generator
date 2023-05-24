@@ -9,6 +9,8 @@ export interface SwaggerCommonRef {
 
 export interface SwaggerSchema {
     type?: string;
+    description?: string;
+    format?: string;
     readOnly?: boolean;
     writeOnly?: boolean;
     example?: any;
@@ -16,4 +18,8 @@ export interface SwaggerSchema {
     maximum?: number;
     maxLength?: number;
     minLength?: number;
+    default?: any;
+    properties?: Record<string, SwaggerSchema>;
+    items?: SwaggerSchema | SwaggerCommonRef;
+    required?: string[];
 }

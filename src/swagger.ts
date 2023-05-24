@@ -653,8 +653,8 @@ const spec: SwaggerSpecification = {
                         ],
                         "schema": {
                             "type": "array",
-                            "items": {
-                                "type": "string"
+                            items: {
+                                'example': 123
                             }
                         }
                     },

@@ -11,6 +11,7 @@ export interface SwaggerRequestParameter {
     description?: string;
     required?: boolean;
     schema?: SwaggerSchema;
+    example?: any
 }
 
 export interface SwaggerFieldExample {
