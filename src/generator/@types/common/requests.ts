@@ -1,3 +1,4 @@
+import { HttpStatusNumber } from "./httpStatusCode";
 import { SwaggerCommonRef, SwaggerSchema } from "./misc";
 
 export type SwaggerRequestParameterIn = 'query' | 'header' | 'path' | 'cookie';
@@ -7,7 +8,7 @@ export type SwaggerBodyContentTypes = 'application/json' | 'text/plain' | 'multi
 
 export interface SwaggerRequestParameter {
     name: string;
-    in: SwaggerRequestParameterIn;
+    in?: SwaggerRequestParameterIn;
     description?: string;
     required?: boolean;
     schema?: SwaggerSchema;
@@ -36,3 +37,6 @@ export interface SwaggerResponse {
     headers?: SwaggerRequestHeaders;
     content?: Record<string, SwaggerBodyContent>;
 }
+
+export type SwaggerParameters = Array<SwaggerRequestParameter | SwaggerCommonRef>;
+export type SwaggerResponses = Partial<Record<HttpStatusNumber, SwaggerResponse | SwaggerCommonRef>>;

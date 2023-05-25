@@ -1,6 +1,5 @@
-import { HttpStatusNumber } from './common/httpStatusCode'
 import { SwaggerCommonExternalDoc, SwaggerCommonRef } from "./common/misc";
-import { SwaggerRequestBody, SwaggerRequestParameter, SwaggerResponse } from './common/requests';
+import { SwaggerParameters, SwaggerRequestBody, SwaggerRequestParameter, SwaggerResponse, SwaggerResponses } from './common/requests';
 
 
 export interface SwaggerRequest {
@@ -9,9 +8,9 @@ export interface SwaggerRequest {
     description?: string;
     externalDocs?: SwaggerCommonExternalDoc;
     operationId?: string;
-    parameters?: Array<SwaggerRequestParameter | SwaggerCommonRef>;
+    parameters?: SwaggerParameters;
     requestBody?: SwaggerRequestBody | SwaggerCommonRef;
-    responses: Partial<Record<HttpStatusNumber, SwaggerResponse>>;
+    responses?: SwaggerResponses;
 }
 
 export interface SwaggerPath {
