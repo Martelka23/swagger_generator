@@ -1,7 +1,9 @@
 import SwaggerUI from 'swagger-ui-react';
+import "swagger-ui-react/swagger-ui.css";
 
 import {spec} from './generator/generator';
-import "swagger-ui-react/swagger-ui.css";
+import { vpbxSpec } from './swagger';
+
 
 function App() {
   return (

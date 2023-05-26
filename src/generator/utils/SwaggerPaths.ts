@@ -1,7 +1,7 @@
 import { HttpMethods, HttpStatusCode } from "../@types/common/httpStatusCode";
 import { SwaggerCommonRef } from "../@types/common/misc";
 import { SwaggerParameters, SwaggerRequestBody, SwaggerRequestParameter, SwaggerResponses } from "../@types/common/requests";
-import { SwaggerPath, SwaggerRequest } from "../@types/swaggerPath";
+import { SwaggerPath, SwaggerPathRequest } from "../@types/swaggerPath";
 
 function isSwaggerRequestParameter(
     param: SwaggerCommonRef | SwaggerRequestParameter
@@ -12,33 +12,20 @@ function isSwaggerRequestParameter(
 export class SwaggerPaths {
     paths: Record<string, SwaggerPath> = {};
     
-    constructor() {
-
+    constructor(...swaggerPaths: SwaggerPaths[]) {
+        swaggerPaths.forEach(swaggerPath => {
+            this.paths = { ...this.paths, ...swaggerPath.getConfig() };
+        });
     }
 
     addEndpoint(
         method: HttpMethods,
         path: string,
-        request: SwaggerRequest,
+        request: SwaggerPathRequest,
         summary: string = '',
         description: string = ''
     ) {
         request.operationId = request.operationId || `${method}_${path}`;
-        request.responses = request.responses || {
-            [HttpStatusCode.Success]: {
-                description: 'Vse horosho'
-            }
-        }
-        if (request.parameters && Array.isArray(request.parameters)) {
-            request.parameters = request.parameters.map(param => {
-                console.log(param)
-                if (isSwaggerRequestParameter(param) && param.in === undefined) {
-                    param.in = 'query'
-                }
-
-                return param;
-            })
-        }
         
         this.paths[path] =  this.paths[path] || {};
         this.paths[path][method] = {};

@@ -1,6 +1,6 @@
 import { SwaggerSpecification } from "./generator/@types/swagger"
 
-const spec: SwaggerSpecification = {
+export const vpbxSpec: SwaggerSpecification = {
     "openapi": "3.0.0",
     "paths": {
         "/api/protected/calls/vpbx/outbound": {
@@ -23,7 +23,8 @@ const spec: SwaggerSpecification = {
                     }
                 },
                 "tags": [
-                    "calls"
+                    "calls",
+                    'test'
                 ]
             }
         },
@@ -1224,5 +1225,3 @@ const spec: SwaggerSpecification = {
         }
     }
 }
-
-export default spec

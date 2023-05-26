@@ -1,7 +1,8 @@
 import { HttpMethods, HttpStatusCode } from './@types/common/httpStatusCode';
 import { SwaggerSpecification } from './@types/swagger'
-import { SwaggerRequest } from './@types/swaggerPath';
+import { SwaggerPathRequest } from './@types/swaggerPath';
 import { SwaggerPaths } from './utils/SwaggerPaths';
+import { SwaggerRequest } from './utils/SwaggerRequest';
 import { SwaggerTags } from './utils/SwaggerTags';
 
 // Основная информация
@@ -19,55 +20,28 @@ tags.addTag({
 });
 
 const swaggerPaths = new SwaggerPaths();
-const test: {method: HttpMethods, path: string, request: SwaggerRequest}[] = [
-    { 
-        method: 'get', 
-        path: '/api/user', 
-        request: {
-            description: 'Get users',
-            parameters: [
-                {
-                    name: 'userId',
-                    description: 'Id of user',
-                    example: 123
-                }
-            ]
-        }
-    },
-    { 
-        method: 'post', 
-        path: '/api/user',
-        request: {
-            description: 'Create users',
-            requestBody: {
-                content: {
-                    'application/json': {
-                        schema: {
-                            '$ref': '#/components/schemas/TestSchema'
-                        }
-                    }
-                }
-            }
-        }
-    },
-    { 
-        method: 'delete', 
-        path: '/api/post/{id}',
-        request: {
-            parameters: [
-                {
-                    name: 'id',
-                    in: 'path'
-                }
-            ]
-        }
-    }
-];
-test.forEach(el => {
-    swaggerPaths.addEndpoint(el.method, el.path, el.request)
-})
 
-console.log(swaggerPaths.getConfig())
+const swaggerRequest1 = new SwaggerRequest({ description: 'Get Users', tags: ['Users'] })
+    .addParam({ name: 'userId', description: 'Id of user', example: 123 });
+
+const swaggerRequest2 = new SwaggerRequest({ description: 'Create user', tags: ['Users'] })
+    .addBody('TestSchema');
+
+const swaggerRequest3 = new SwaggerRequest({ description: 'Delete post', tags: ['Posts'] })
+    .addParam({ name: 'id', in: 'path', example: 123 });
+
+swaggerPaths.addEndpoint('get', '/api/users', swaggerRequest1.getConfig());
+swaggerPaths.addEndpoint('post', '/api/users', swaggerRequest2.getConfig());
+swaggerPaths.addEndpoint('delete', '/api/post/{id}', swaggerRequest3.getConfig());
+
+const swaggerPathsMagic = new SwaggerPaths();
+
+const swaggerRequest4 = new SwaggerRequest({ description: 'Some magic', tags: ['Magic'] })
+    .addBody('TestSchema');
+
+swaggerPathsMagic.addEndpoint('post', '/api/magic', swaggerRequest4.getConfig());
+
+const rootSwaggerPaths = new SwaggerPaths(swaggerPaths, swaggerPathsMagic);
 
 const spec: SwaggerSpecification = {
     openapi: "3.0.0",
@@ -75,7 +49,7 @@ const spec: SwaggerSpecification = {
         title: "My title",
         version: "3.2.2"
     },
-    paths: swaggerPaths.getConfig(),
+    paths: rootSwaggerPaths.getConfig(),
     components: {
         schemas: {
             'TestSchema': {

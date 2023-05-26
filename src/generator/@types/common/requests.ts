@@ -23,7 +23,7 @@ export interface SwaggerFieldExample {
 
 export interface SwaggerBodyContent {
     schema?: SwaggerSchema | SwaggerCommonRef;
-    examples?: Record<string, SwaggerFieldExample | SwaggerCommonRef>;
+    // examples?: Record<string, SwaggerFieldExample | SwaggerCommonRef>;
 }
 
 export interface SwaggerRequestBody {
