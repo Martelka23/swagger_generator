@@ -7,7 +7,7 @@ export interface SwaggerCommonRef {
     '$ref': string;
 }
 
-export interface SwaggerSchema {
+export interface ISwaggerSchema {
     type?: string;
     description?: string;
     format?: string;
@@ -19,7 +19,7 @@ export interface SwaggerSchema {
     maxLength?: number;
     minLength?: number;
     default?: any;
-    properties?: Record<string, SwaggerSchema>;
-    items?: SwaggerSchema | SwaggerCommonRef;
+    properties?: Record<string, ISwaggerSchema>;
+    items?: ISwaggerSchema | SwaggerCommonRef;
     required?: string[];
 }

@@ -13,13 +13,6 @@ export class SwaggerRequest {
             }
         }
 
-        config.responses[HttpStatusCode.Created] = {
-            description: 'asdf',
-            content: {
-                
-            }
-        }
-
         this.request = config;
     }
 
@@ -62,9 +55,17 @@ export class SwaggerRequest {
     }
 
     // response: Partial<Record<HttpStatusNumber, { description: string, ref: string }>>
-    addResponse(statusNumber: HttpStatusNumber, schemaName: string): SwaggerRequest {
+    addResponse(statusNumber: HttpStatusNumber, schemaName: string, mediaType: SwaggerBodyContentTypes = 'application/json'): SwaggerRequest {
         this.request.responses![statusNumber] = {
-            '$ref': '#/components/schemas/' + schemaName
+            description: 'User object',
+            
+            content: {
+                [mediaType]: {
+                    schema: {
+                        '$ref': '#/components/schemas/' + schemaName
+                    }
+                }
+            }
         };
 
         return this;
