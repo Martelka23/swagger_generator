@@ -1,4 +1,3 @@
-import {    HttpStatusCode } from './@types/common/httpStatusCode';
 import { SwaggerSpecification } from './@types/swagger'
 import { SwaggerPaths } from './utils/SwaggerPaths';
 import { SwaggerRequest } from './utils/SwaggerRequest';
@@ -66,7 +65,11 @@ const spec: SwaggerSpecification = {
     paths: rootSwaggerPaths.getConfig(),
     components: {
         schemas: rootSwaggerSchema.getConfig()
-    }
+    },
+    servers: [
+        { url: 'https://mysite.ru', description: 'Production server' },
+        { url: 'https://dev.mysite.ru', description: 'Dev server' }
+    ]
 };
 
 
