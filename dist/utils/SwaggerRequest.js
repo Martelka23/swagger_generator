@@ -1,21 +1,18 @@
-import { HttpStatusCode, HttpStatusNumber } from "../@types/common/httpStatusCode";
-import { SwaggerBodyContentTypes, SwaggerRequestParameter } from "../@types/common/requests";
-import { SwaggerPathRequest } from "../@types/swaggerPath";
-
-export class SwaggerRequest {
-    request: SwaggerPathRequest = {};
-
-    constructor(config: SwaggerPathRequest = {}) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.SwaggerRequest = void 0;
+const httpStatusCode_1 = require("../types/common/httpStatusCode");
+class SwaggerRequest {
+    constructor(config = {}) {
+        this.request = {};
         config.responses = config.responses || {
-            [HttpStatusCode.Success]: {
+            [httpStatusCode_1.HttpStatusCode.Success]: {
                 description: 'Vse horosho'
             }
-        }
-
+        };
         this.request = config;
     }
-
-    addBody(schemaName: string, mediaType: SwaggerBodyContentTypes = 'application/json'): SwaggerRequest {
+    addBody(schemaName, mediaType = 'application/json') {
         this.request.requestBody = {
             content: {
                 [mediaType]: {
@@ -25,39 +22,31 @@ export class SwaggerRequest {
                 }
             }
         };
-
         return this;
     }
-
-    addParam(param: SwaggerRequestParameter | string): SwaggerRequest {
+    addParam(param) {
         if (!this.request.parameters) {
             this.request.parameters = [];
         }
-
         if (typeof param === 'string') {
             this.request.parameters.push({
                 '$ref': param
             });
-        } else {
+        }
+        else {
             param.in = param.in || 'query';
             param.required = param.required || false;
             this.request.parameters.push(param);
         }
-
         return this;
     }
-
-    addParams(params: Array<SwaggerRequestParameter | string>): SwaggerRequest {
+    addParams(params) {
         params.forEach(param => this.addParam(param));
-
         return this;
     }
-
-    // response: Partial<Record<HttpStatusNumber, { description: string, ref: string }>>
-    addResponse(statusNumber: HttpStatusNumber, schemaName: string, mediaType: SwaggerBodyContentTypes = 'application/json'): SwaggerRequest {
-        this.request.responses![statusNumber] = {
+    addResponse(statusNumber, schemaName, mediaType = 'application/json') {
+        this.request.responses[statusNumber] = {
             description: 'User object',
-            
             content: {
                 [mediaType]: {
                     schema: {
@@ -66,19 +55,15 @@ export class SwaggerRequest {
                 }
             }
         };
-
         return this;
     }
-
-    addResponses(responses: { statusNumber: HttpStatusNumber, ref: string }[]): SwaggerRequest {
+    addResponses(responses) {
         responses.forEach(response => this.addResponse(response.statusNumber, response.ref));
-
         return this;
     }
-
-    
-
     getConfig() {
         return this.request;
     }
 }
+exports.SwaggerRequest = SwaggerRequest;
+//# sourceMappingURL=SwaggerRequest.js.map

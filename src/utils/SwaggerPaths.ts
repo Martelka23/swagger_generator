@@ -1,6 +1,6 @@
-import { HttpMethods, HttpStatusCode } from "../@types/common/httpStatusCode";
+import { HttpMethods } from "../@types/common/httpStatusCode";
 import { SwaggerCommonRef } from "../@types/common/misc";
-import { SwaggerParameters, SwaggerRequestBody, SwaggerRequestParameter, SwaggerResponses } from "../@types/common/requests";
+import { SwaggerRequestParameter } from "../@types/common/requests";
 import { SwaggerPath, SwaggerPathRequest } from "../@types/swaggerPath";
 
 function isSwaggerRequestParameter(
