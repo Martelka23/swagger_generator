@@ -5,7 +5,7 @@ import { SwaggerServer } from "./swaggerServer";
 import { SwaggerTag } from "./swaggerTag";
 
 
-export interface SwaggerSpecification {
+export interface SwaggerSpecificationConfig {
     openapi: string;
     info: SwaggerInfo;
     servers?: SwaggerServer[];
