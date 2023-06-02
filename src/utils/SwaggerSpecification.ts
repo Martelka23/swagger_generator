@@ -1,4 +1,4 @@
-import { SwaggerSpecificationConfig } from "src/@types";
+import { SwaggerSpecificationConfig } from "../@types";
 
 export class SwaggerSpecification {
     config: SwaggerSpecificationConfig;

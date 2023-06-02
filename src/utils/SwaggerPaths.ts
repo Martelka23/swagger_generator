@@ -1,13 +1,4 @@
-import { HttpMethods } from "../@types/common/httpStatusCode";
-import { SwaggerCommonRef } from "../@types/common/misc";
-import { SwaggerRequestParameter } from "../@types/common/requests";
-import { SwaggerPath, SwaggerPathRequest } from "../@types/swaggerPath";
-
-function isSwaggerRequestParameter(
-    param: SwaggerCommonRef | SwaggerRequestParameter
-): param is SwaggerRequestParameter {
-    return 'name' in param;
-}
+import { HttpMethods, SwaggerPath, SwaggerPathRequest } from "../@types";
 
 export class SwaggerPaths {
     paths: Record<string, SwaggerPath> = {};
