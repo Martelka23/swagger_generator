@@ -6,12 +6,6 @@ export class SwaggerRequest {
     request: SwaggerPathRequest = {};
 
     constructor(config: SwaggerPathRequest = {}) {
-        config.responses = config.responses || {
-            [HttpStatusCode.Success]: {
-                description: 'Vse horosho'
-            }
-        }
-
         this.request = config;
     }
 
@@ -79,6 +73,12 @@ export class SwaggerRequest {
     
 
     getConfig() {
+        this.request.responses = this.request.responses || {
+            [HttpStatusCode.Success]: {
+                description: 'Vse horosho'
+            }
+        }
+
         return this.request;
     }
 }
