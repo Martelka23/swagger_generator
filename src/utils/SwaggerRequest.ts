@@ -1,6 +1,10 @@
-import { HttpStatusCode, HttpStatusNumber } from "../@types/common/httpStatusCode";
-import { SwaggerBodyContentTypes, SwaggerRequestParameter } from "../@types/common/requests";
-import { SwaggerPathRequest } from "../@types/swaggerPath";
+import { 
+    HttpStatusCode, 
+    HttpStatusNumber, 
+    SwaggerBodyContentTypes, 
+    SwaggerPathRequest, 
+    SwaggerRequestParameter 
+} from "../@types";
 
 export class SwaggerRequest {
     request: SwaggerPathRequest = {};

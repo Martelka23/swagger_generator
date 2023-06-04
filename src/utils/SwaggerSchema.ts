@@ -1,4 +1,4 @@
-import { ISwaggerSchema } from "../@types/common/misc";
+import { ISwaggerSchema } from "../@types";
 
 export class SwaggerSchema {
     schemas: Record<string, ISwaggerSchema> = {};
