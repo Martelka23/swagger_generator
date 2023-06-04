@@ -10,7 +10,7 @@ export class SwaggerRequest {
     request: SwaggerPathRequest = {};
 
     constructor(config: SwaggerPathRequest = {}) {
-        this.request.responses = this.request.responses || {
+        config.responses = config.responses || {
             [HttpStatusCode.InternalServerError]: {
                 description: 'Internal server error'
             }
