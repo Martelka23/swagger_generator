@@ -57,10 +57,14 @@ export class SwaggerRequest {
     }
 
     // response: Partial<Record<HttpStatusNumber, { description: string, ref: string }>>
-    addResponse(statusNumber: HttpStatusNumber, schemaName: string, mediaType: SwaggerBodyContentTypes = 'application/json'): SwaggerRequest {
+    addResponse(
+        statusNumber: HttpStatusNumber, 
+        schemaName: string, 
+        description: string = '', 
+        mediaType: SwaggerBodyContentTypes = 'application/json'
+    ): SwaggerRequest {
         this.request.responses![statusNumber] = {
-            description: 'User object',
-            
+            description,
             content: {
                 [mediaType]: {
                     schema: {
