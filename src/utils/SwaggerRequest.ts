@@ -10,15 +10,15 @@ export class SwaggerRequest {
     request: SwaggerPathRequest = {};
 
     constructor(config: SwaggerPathRequest = {}) {
-        this.request = config;
-    }
-
-    addBody(schemaName: string, mediaType: SwaggerBodyContentTypes = 'application/json'): SwaggerRequest {
         this.request.responses = this.request.responses || {
             [HttpStatusCode.InternalServerError]: {
                 description: 'Internal server error'
             }
         }
+        this.request = config;
+    }
+
+    addBody(schemaName: string, mediaType: SwaggerBodyContentTypes = 'application/json'): SwaggerRequest {
         this.request.requestBody = {
             content: {
                 [mediaType]: {
