@@ -14,6 +14,11 @@ export class SwaggerRequest {
     }
 
     addBody(schemaName: string, mediaType: SwaggerBodyContentTypes = 'application/json'): SwaggerRequest {
+        this.request.responses = this.request.responses || {
+            [HttpStatusCode.InternalServerError]: {
+                description: 'Internal server error'
+            }
+        }
         this.request.requestBody = {
             content: {
                 [mediaType]: {
@@ -77,12 +82,6 @@ export class SwaggerRequest {
     
 
     getConfig() {
-        this.request.responses = this.request.responses || {
-            [HttpStatusCode.Success]: {
-                description: 'Vse horosho'
-            }
-        }
-
         return this.request;
     }
 }
