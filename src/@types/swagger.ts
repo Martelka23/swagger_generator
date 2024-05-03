@@ -12,5 +12,5 @@ export interface SwaggerSpecificationConfig {
     paths: Record<string, SwaggerPath>;
     components?: SwaggerComponents;
     tags?: SwaggerTag[];
-    security?: Record<string, string[]>
+    security?: Array<Record<string, string[]>>;
 }

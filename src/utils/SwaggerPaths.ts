@@ -1,4 +1,4 @@
-import { HttpMethods, SwaggerPath, SwaggerPathRequest } from "../@types";
+import { HttpMethod, SwaggerPath, SwaggerPathRequest } from "../@types";
 
 export class SwaggerPaths {
     paths: Record<string, SwaggerPath> = {};
@@ -10,7 +10,7 @@ export class SwaggerPaths {
     }
 
     addEndpoint(
-        method: HttpMethods,
+        method: HttpMethod,
         path: string,
         request: SwaggerPathRequest,
         summary: string = '',

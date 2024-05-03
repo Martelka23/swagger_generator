@@ -1,7 +1,7 @@
 export type HttpStatusName = keyof typeof HttpStatusCode;
 export type HttpStatusNumber = typeof HttpStatusCode[HttpStatusName];
 
-export type HttpMethods = 'get' | 'post' | 'put' | 'patch' | 'delete';
+export type HttpMethod = 'get' | 'post' | 'put' | 'patch' | 'delete';
 
 export const HttpStatusCode = {
 

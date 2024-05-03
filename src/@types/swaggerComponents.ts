@@ -3,6 +3,7 @@ import { SwaggerFieldExample, SwaggerRequestBody, SwaggerRequestHeaders, Swagger
 
 export interface SwaggerComponents {
     schemas?: Record<string, ISwaggerSchema | SwaggerCommonRef>;
+    securitySchemes?: Record<string, Record<string, string>>;
     responses?: Record<string, ISwaggerSchema | SwaggerCommonRef>;
     parameters?: Record<string, SwaggerRequestParameter | SwaggerCommonRef>;
     examples?: Record<string, SwaggerFieldExample | SwaggerCommonRef>;
